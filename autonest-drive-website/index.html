@@ -1,1 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
 
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoNestDrive | UK's Leading Luxury & Performance Car Dealership</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: rgba(15, 23, 42, 0.9);
+            --bg-card-solid: #0f172a;
+            --accent-gold: #c5a059;
+            --accent-gold-hover: #d4af37;
+            --accent-blue: #0284c7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-glass: rgba(197, 160, 89, 0.2);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --radius: 10px;
+            --transition: all 0.25s ease-in-out;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.5; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--border-glass); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+
+        /* Top Bar & Navigation */
+        .top-bar {
+            background: #04060b; border-bottom: 1px solid var(--border-subtle);
+            padding: 0.5rem 5%; font-size: 0.8rem; color: var(--text-muted);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .top-bar-left, .top-bar-right { display: flex; gap: 1.5rem; align-items: center; }
+        .top-bar i { color: var(--accent-gold); }
+
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; background: rgba(9, 13, 22, 0.95);
+            backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .brand { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+        .brand span { color: var(--accent-gold); }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-gold); }
+
+        /* Buttons */
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37, #aa820a); color: #000;
+            padding: 0.6rem 1.25rem; border-radius: var(--radius); font-weight: 700;
+            border: none; cursor: pointer; transition: var(--transition); display: inline-flex;
+            align-items: center; justify-content: center; gap: 0.5rem; text-align: center; font-size: 0.9rem;
+        }
+        .btn-gold:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(212,175,55,0.3); }
+        
+        .btn-outline {
+            background: transparent; border: 1px solid var(--border-glass);
+            color: var(--text-main); padding: 0.6rem 1.25rem; border-radius: var(--radius);
+            cursor: pointer; transition: var(--transition); display: inline-flex;
+            align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;
+        }
+        .btn-outline:hover { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(212,175,55,0.05); }
+
+        .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+
+        /* Utility Layout */
+        .section { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
+        .section-subtitle { color: var(--text-muted); margin-bottom: 2rem; font-size: 1rem; }
+
+        /* Hero & Search Header */
+        .hero {
+            padding: 5rem 5% 4rem;
+            background: linear-gradient(rgba(9, 13, 22, 0.7), rgba(9, 13, 22, 0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            text-align: center; position: relative;
+        }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -1px; }
+        .hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto 2.5rem; }
+
+        /* Advanced Search Filter Box */
+        .search-box {
+            background: var(--bg-card); border: 1px solid var(--border-glass);
+            border-radius: 16px; padding: 2rem; max-width: 1100px; margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6); backdrop-filter: blur(16px);
+            text-align: left;
+        }
+        .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+        .search-group label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 0.4rem; font-weight: 700; }
+        .search-control {
+            width: 100%; padding: 0.75rem; background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-subtle); border-radius: var(--radius);
+            color: var(--text-main); font-size: 0.9rem; transition: var(--transition);
+        }
+        .search-control:focus { border-color: var(--accent-gold); outline: none; background: rgba(0, 0, 0, 0.7); }
+        .search-actions { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 1.25rem; }
+
+        /* Trust Banner Grid */
+        .trust-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+            max-width: 1400px; margin: -2.5rem auto 0; padding: 0 5%; position: relative; z-index: 10;
+        }
+        .trust-card {
+            background: var(--bg-card-solid); border: 1px solid var(--border-glass);
+            border-radius: var(--radius); padding: 1.5rem; display: flex; align-items: center; gap: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .trust-card i { font-size: 2rem; color: var(--accent-gold); }
+        .trust-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.1rem; }
+        .trust-card p { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* Inventory Layout */
+        .inventory-layout { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: start; }
+        .filter-sidebar {
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            border-radius: var(--radius); padding: 1.5rem; position: sticky; top: 90px;
+        }
+        .filter-section { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.25rem; }
+        .filter-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .filter-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center; }
+
+        .inventory-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; background: var(--bg-card); padding: 1rem 1.5rem; border-radius: var(--radius); border: 1px solid var(--border-subtle); }
+
+        /* Vehicle Cards Grid */
+        .cars-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .car-card {
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column;
+            transition: var(--transition); position: relative;
+        }
+        .car-card:hover { transform: translateY(-4px); border-color: var(--border-glass); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+        
+        .car-img-wrap { position: relative; width: 100%; height: 210px; background: #000; overflow: hidden; }
+        .car-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .car-card:hover .car-img { transform: scale(1.05); }
+
+        .car-badges { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px; z-index: 2; }
+        .badge { background: rgba(9, 13, 22, 0.85); backdrop-filter: blur(4px); border: 1px solid var(--border-glass); color: var(--accent-gold); font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase; }
+        .badge.sold { background: var(--danger); color: #fff; border-color: transparent; }
+        .badge.reserved { background: var(--warning); color: #000; border-color: transparent; }
+
+        .fav-btn { position: absolute; top: 10px; right: 10px; background: rgba(9,13,22,0.8); border: 1px solid var(--border-subtle); color: var(--text-muted); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); z-index: 2; }
+        .fav-btn:hover, .fav-btn.active { color: var(--danger); border-color: var(--danger); background: rgba(239,68,68,0.1); }
+
+        .car-body { padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .car-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .car-trim { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+
+        .car-specs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; background: rgba(0,0,0,0.3); padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem; text-align: center; font-size: 0.75rem; border: 1px solid var(--border-subtle); }
+        .car-specs-grid span { color: var(--text-muted); display: block; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 0.1rem; }
+        .car-specs-grid strong { font-size: 0.85rem; color: var(--text-main); }
+
+        .car-finance-box { background: rgba(197, 160, 89, 0.05); border: 1px dashed var(--border-glass); padding: 0.6rem 0.8rem; border-radius: 8px; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+        .car-finance-box strong { color: var(--accent-gold); font-size: 1rem; }
+
+        .car-price-row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); }
+        .car-price { font-size: 1.35rem; font-weight: 800; color: var(--text-main); }
+
+        .car-footer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.75rem; }
+
+        /* Modals & Overlays */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(4,6,11,0.85); backdrop-filter: blur(8px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
+        .modal-container { background: var(--bg-card-solid); border: 1px solid var(--border-glass); border-radius: 14px; width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.8); }
+        .modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; }
+        .modal-close { background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+        .modal-close:hover { color: var(--text-main); }
+        .modal-body { padding: 1.5rem; }
+
+        /* Vehicle Details Modal Layout */
+        .details-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; }
+        .details-gallery { display: flex; flex-direction: column; gap: 1rem; }
+        .details-main-img { width: 100%; height: 320px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border-subtle); }
+        .details-thumbs { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
+        .details-thumb { width: 70px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid var(--border-subtle); opacity: 0.6; transition: var(--transition); }
+        .details-thumb.active, .details-thumb:hover { opacity: 1; border-color: var(--accent-gold); }
+
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 1rem 0; }
+        .spec-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border-subtle); }
+        .spec-table td:first-child { color: var(--text-muted); font-weight: 500; width: 40%; }
+        .spec-table td:last-child { font-weight: 600; text-align: right; }
+
+        /* Dashboard & Tabs */
+        .dashboard-layout { display: grid; grid-template-columns: 260px 1fr; gap: 2rem; align-items: start; max-width: 1400px; margin: 3rem auto; padding: 0 5%; }
+        .dashboard-sidebar { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: 1.5rem; }
+        .dashboard-nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: var(--radius); color: var(--text-muted); font-weight: 500; cursor: pointer; transition: var(--transition); margin-bottom: 0.25rem; }
+        .dashboard-nav-item:hover, .dashboard-nav-item.active { background: rgba(197, 160, 89, 0.1); color: var(--accent-gold); }
+        .dashboard-content { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: 2rem; min-height: 500px; }
+        .dash-tab-pane { display: none; }
+        .dash-tab-pane.active { display: block; }
+
+        /* Forms & Inputs */
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group.full { grid-column: span 2; }
+        .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem; font-weight: 500; }
+        .form-control { width: 100%; padding: 0.75rem; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: var(--radius); color: var(--text-main); font-size: 0.9rem; }
+        .form-control:focus { border-color: var(--accent-gold); outline: none; }
+
+        /* Custom Options Card Selector for Checkout */
+        .checkout-option-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .checkout-option-card:hover, .checkout-option-card.selected {
+            border-color: var(--accent-gold);
+            background: rgba(197, 160, 89, 0.08);
+        }
+        .checkout-option-card input[type="radio"] {
+            accent-color: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        /* Tables */
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
+        .data-table th, .data-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid var(--border-subtle); }
+        .data-table th { color: var(--text-muted); font-weight: 600; background: rgba(0,0,0,0.2); }
+        .data-table tr:hover { background: rgba(255,255,255,0.02); }
+
+        /* Footer */
+        footer { background: #04060b; border-top: 1px solid var(--border-subtle); padding: 4rem 5% 2rem; margin-top: 4rem; color: var(--text-muted); font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; margin-bottom: 3rem; }
+        .footer-col h4 { color: var(--text-main); font-size: 1.05rem; font-weight: 700; margin-bottom: 1.25rem; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul li a:hover { color: var(--accent-gold); }
+        .footer-bottom { border-top: 1px solid var(--border-subtle); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; }
+
+        /* Responsive Breakpoints */
+        @media(max-width: 1024px) {
+            .inventory-layout, .details-grid, .dashboard-layout { grid-template-columns: 1fr; }
+            .filter-sidebar { position: static; margin-bottom: 2rem; }
+            .nav-links { display: none; }
+        }
+        @media(max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+            .hero h1 { font-size: 2.2rem; }
+            .top-bar { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span><i class="fa-solid fa-phone"></i> <a href="https://wa.me/447541995210" target="_blank">+44 7541 995210</a></span>
+            <span><i class="fa-solid fa-envelope"></i> <a href="mailto:contact@autonestdrive.online">contact@autonestdrive.online</a></span>
+            <span><i class="fa-solid fa-location-dot"></i> 128 City Road, London, EC1V 2NX</span>
+        </div>
+        <div class="top-bar-right">
+            <span><i class="fa-solid fa-clock"></i> Mon-Sat: 8:30 AM - 7:00 PM</span>
+            <span style="cursor: pointer; color: var(--accent-gold);" onclick="openAuthModal()"><i class="fa-solid fa-user"></i> Sign In / Register</span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="brand" onclick="switchMainView('home')">
+            <i class="fa-solid fa-car-side" style="color: var(--accent-gold);"></i> AutoNest<span>Drive</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="switchMainView('home')" class="active" id="navHome">Home</a></li>
+            <li><a href="#inventory" onclick="switchMainView('home')">Showroom (<span id="totalInventoryCount">0</span>)</a></li>
+            <li><a href="#" onclick="switchMainView('financePage')">Finance</a></li>
+            <li><a href="#" onclick="switchMainView('aboutPage')">About Us</a></li>
+            <li><a href="#" onclick="switchMainView('contactPage')">Contact</a></li>
+            <li><a href="#" onclick="switchMainView('faqPage')">FAQ</a></li>
+        </ul>
+        <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <button class="btn-outline btn-sm" onclick="openWishlistModal()"><i class="fa-solid fa-heart" style="color: var(--danger);"></i> (<span id="wishlistCount">0</span>)</button>
+            <button class="btn-gold btn-sm" onclick="openDashboardModal()"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
+        </div>
+    </nav>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <div id="mainViewContainer">
+
+        <!-- HOME VIEW -->
+        <div id="viewHome" class="main-view-section">
+            <!-- Hero Header -->
+            <section class="hero">
+                <h1>Find Your Next Prestige & Performance Vehicle</h1>
+                <p>Explore over 100+ fully inspected luxury cars, sports cars, and SUVs with nationwide delivery and flexible HP & PCP finance options.</p>
+                
+                <!-- Search Box -->
+                <div class="search-box">
+                    <div class="search-grid">
+                        <div class="search-group">
+                            <label>Make</label>
+                            <select id="searchMake" class="search-control">
+                                <option value="">All Makes</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label>Model</label>
+                            <select id="searchModel" class="search-control">
+                                <option value="">All Models</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label>Body Style</label>
+                            <select id="searchBody" class="search-control">
+                                <option value="">All Body Styles</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label>Max Price (£)</label>
+                            <select id="searchPrice" class="search-control">
+                                <option value="">No Maximum</option>
+                                <option value="30000">Under £30,000</option>
+                                <option value="50000">Under £50,000</option>
+                                <option value="80000">Under £80,000</option>
+                                <option value="120000">Under £120,000</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search-actions">
+                        <span style="font-size: 0.85rem; color: var(--text-muted);" id="searchMatchCount">Showing available cars</span>
+                        <button class="btn-gold" onclick="executeAdvancedSearch()"><i class="fa-solid fa-magnifying-glass"></i> Search Inventory</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trust Badges -->
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <div>
+                        <h4>150-Point Inspection</h4>
+                        <p>Certified mechanical & safety check</p>
+                    </div>
+                </div>
+                <div class="trust-card">
+                    <i class="fa-solid fa-award"></i>
+                    <div>
+                        <h4>6-Month Warranty</h4>
+                        <p>Comprehensive protection included</p>
+                    </div>
+                </div>
+                <div class="trust-card">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <div>
+                        <h4>Nationwide Delivery</h4>
+                        <p>Delivered direct to your doorstep</p>
+                    </div>
+                </div>
+                <div class="trust-card">
+                    <i class="fa-solid fa-sterling-sign"></i>
+                    <div>
+                        <h4>Flexible HP & PCP</h4>
+                        <p>Tailored finance options available</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Stock Section -->
+            <section class="section" id="inventory">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+                    <div>
+                        <h2 class="section-title">Featured Vehicle Showroom</h2>
+                        <p class="section-subtitle" style="margin-bottom: 0;">Handpicked luxury models ready for immediate drive away.</p>
+                    </div>
+                    <button class="btn-outline btn-sm" onclick="resetFilters()">View All Stock <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Main Inventory Grid Layout -->
+                <div class="inventory-layout">
+                    <!-- Filter Sidebar -->
+                    <div class="filter-sidebar">
+                        <div class="filter-title">Filters <span style="font-size: 0.75rem; color: var(--accent-gold); cursor: pointer;" onclick="resetFilters()">Reset All</span></div>
+                        
+                        <div class="filter-section">
+                            <div class="filter-title" style="font-size: 0.85rem;">Fuel Type</div>
+                            <div id="filterFuelOptions" style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;"></div>
+                        </div>
+
+                        <div class="filter-section">
+                            <div class="filter-title" style="font-size: 0.85rem;">Transmission</div>
+                            <div id="filterTransOptions" style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;"></div>
+                        </div>
+
+                        <div class="filter-section">
+                            <div class="filter-title" style="font-size: 0.85rem;">Max Mileage</div>
+                            <select id="filterMaxMileage" class="search-control" onchange="applyFilters()">
+                                <option value="">Any Mileage</option>
+                                <option value="20000">Under 20,000 miles</option>
+                                <option value="40000">Under 40,000 miles</option>
+                                <option value="70000">Under 70,000 miles</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Car Listings Grid -->
+                    <div>
+                        <div class="inventory-header">
+                            <span id="inventoryCountDisplay" style="font-weight: 600; font-size: 0.9rem;">Loading vehicles...</span>
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <label style="font-size: 0.85rem; color: var(--text-muted);">Sort by:</label>
+                                <select id="sortInventory" class="search-control" style="width: 180px; padding: 0.4rem;" onchange="applyFilters()">
+                                    <option value="featured">Featured / Newest</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="mileage">Mileage: Low to High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="cars-grid" id="carsGridContainer">
+                            <!-- Dynamic Inventory Cards Loaded via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FINANCE PAGE VIEW -->
+        <div id="viewFinancePage" class="main-view-section" style="display: none;">
+            <section class="section">
+                <h2 class="section-title">Flexible Car Finance Calculator & Application</h2>
+                <p class="section-subtitle">Choose Hire Purchase (HP) or Personal Contract Purchase (PCP) with transparent rates.</p>
+                
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: 2.5rem; max-width: 900px; margin: 0 auto;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Vehicle Cash Price (£)</label>
+                            <input type="number" id="calcPrice" class="form-control" value="45000" oninput="runGlobalFinanceCalc()">
+                        </div>
+                        <div class="form-group">
+                            <label>Deposit Amount (£)</label>
+                            <input type="number" id="calcDeposit" class="form-control" value="5000" oninput="runGlobalFinanceCalc()">
+                        </div>
+                        <div class="form-group">
+                            <label>Finance Type</label>
+                            <select id="calcType" class="form-control" onchange="runGlobalFinanceCalc()">
+                                <option value="HP">Hire Purchase (HP)</option>
+                                <option value="PCP">Personal Contract Purchase (PCP)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Agreement Term (Months)</label>
+                            <select id="calcTerm" class="form-control" onchange="runGlobalFinanceCalc()">
+                                <option value="24">24 Months</option>
+                                <option value="36">36 Months</option>
+                                <option value="48" selected>48 Months</option>
+                                <option value="60">60 Months</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); border-radius: var(--radius); padding: 1.5rem; margin-top: 1.5rem; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; gap: 1rem;">
+                        <div>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Monthly Payment</span>
+                            <h3 id="resMonthly" style="color: var(--accent-gold); font-size: 1.8rem; margin-top: 0.2rem;">£0.00</h3>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Total Payable</span>
+                            <h3 id="resTotal" style="color: var(--text-main); font-size: 1.8rem; margin-top: 0.2rem;">£0.00</h3>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Representative APR</span>
+                            <h3 style="color: var(--success); font-size: 1.8rem; margin-top: 0.2rem;">8.9%</h3>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <a href="https://wa.me/447541995210" target="_blank" class="btn-gold"><i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp Admin</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ABOUT PAGE VIEW -->
+        <div id="viewAboutPage" class="main-view-section" style="display: none;">
+            <section class="section" style="max-width: 900px;">
+                <h2 class="section-title">About AutoNestDrive</h2>
+                <p class="section-subtitle">UK's Premier Luxury & Performance Vehicle Specialists</p>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 2rem; border-radius: var(--radius); line-height: 1.8;">
+                    <p style="margin-bottom: 1rem;">At AutoNestDrive, we specialize in providing handpicked, high-specification luxury and performance vehicles across the United Kingdom. With over a decade of industry expertise, our team ensures each vehicle undergoes rigorous technical verification and comprehensive safety checks.</p>
+                    <p style="margin-bottom: 1rem;">We offer seamlessly tailored financial packages, extended vehicle warranties, and door-to-door nationwide delivery to make your next purchase transparent and completely effortless.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT PAGE VIEW -->
+        <div id="viewContactPage" class="main-view-section" style="display: none;">
+            <section class="section" style="max-width: 900px;">
+                <h2 class="section-title">Contact Our Sales & Advisory Team</h2>
+                <p class="section-subtitle">Get in touch for direct vehicle inquiries, trade-ins, or delivery schedules.</p>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 2rem; border-radius: var(--radius);">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        <div>
+                            <i class="fa-solid fa-phone" style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                            <h4>Phone / WhatsApp</h4>
+                            <p style="color: var(--text-muted);"><a href="https://wa.me/447541995210" target="_blank">+44 7541 995210</a></p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-envelope" style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                            <h4>Email Enquiries</h4>
+                            <p style="color: var(--text-muted);"><a href="mailto:contact@autonestdrive.online">contact@autonestdrive.online</a></p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-location-dot" style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                            <h4>London Dealership</h4>
+                            <p style="color: var(--text-muted);">128 City Road, London, EC1V 2NX</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://wa.me/447541995210" target="_blank" class="btn-gold"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+                        <a href="mailto:contact@autonestdrive.online" class="btn-outline"><i class="fa-solid fa-envelope"></i> Send Email</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FAQ PAGE VIEW -->
+        <div id="viewFaqPage" class="main-view-section" style="display: none;">
+            <section class="section" style="max-width: 900px;">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Everything you need to know about purchasing with AutoNestDrive.</p>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 1.25rem; border-radius: var(--radius);">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 0.4rem;">How does nationwide delivery work?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Once your purchase or 50% deposit is confirmed, we organize fully insured enclosed transport direct to your home address anywhere in the UK.</p>
+                    </div>
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 1.25rem; border-radius: var(--radius);">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 0.4rem;">Can I reserve a vehicle before full payment?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Yes! You can choose the "Pay Half (50% Deposit)" option during purchase checkout to secure the vehicle immediately, paying the remaining balance upon delivery.</p>
+                    </div>
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 1.25rem; border-radius: var(--radius);">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 0.4rem;">What payment methods are accepted?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">We accept Official Bank Transfers and Cryptocurrency (Bitcoin BTC). Instructions are provided directly within our online checkout process.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- VEHICLE DETAILS MODAL -->
+    <div class="modal-overlay" id="vehicleModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalCarTitle" style="font-size: 1.2rem;">Vehicle Details</h3>
+                <button class="modal-close" onclick="closeModal('vehicleModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="modalCarContent">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MULTI-STEP CHECKOUT / PURCHASE MODAL -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-container" style="max-width: 650px;">
+            <div class="modal-header">
+                <h3 id="checkoutModalTitle" style="font-size: 1.2rem;"><i class="fa-solid fa-cart-shopping" style="color: var(--accent-gold);"></i> Reserve & Purchase Vehicle</h3>
+                <button class="modal-close" onclick="closeModal('checkoutModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- Vehicle Overview Banner -->
+                <div id="checkoutCarBanner" style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); padding: 1rem; border-radius: var(--radius); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <h4 id="checkoutCarName" style="font-size: 1.1rem; color: var(--text-main);">Vehicle</h4>
+                        <span id="checkoutCarTrim" style="font-size: 0.8rem; color: var(--text-muted);">Trim level</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Total Price</span>
+                        <strong id="checkoutCarPrice" style="font-size: 1.2rem; color: var(--accent-gold);">£0</strong>
+                    </div>
+                </div>
+
+                <!-- STEP 1: PAYMENT TYPE SELECTION -->
+                <div id="checkoutStep1">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-gold);">Step 1: Choose Payment Deposit Type</h4>
+                    
+                    <label class="checkout-option-card" id="optFullWrap" onclick="selectPaymentType('full')">
+                        <input type="radio" name="paymentType" id="optFull" value="full" checked>
+                        <div>
+                            <strong>Full Payment (100% Total Price)</strong>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Pay total price upfront: <span id="checkoutFullAmount" style="color: var(--accent-gold); font-weight:700;">£0</span></p>
+                        </div>
+                    </label>
+
+                    <label class="checkout-option-card" id="optHalfWrap" onclick="selectPaymentType('half')">
+                        <input type="radio" name="paymentType" id="optHalf" value="half">
+                        <div>
+                            <strong>Pay Half (50% Deposit)</strong>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Pay 50% deposit (<span id="checkoutHalfAmount" style="color: var(--accent-gold); font-weight:700;">£0</span>) now, pay remaining balance after delivery.</p>
+                        </div>
+                    </label>
+
+                    <button class="btn-gold" style="width: 100%; margin-top: 1.5rem;" onclick="goToCheckoutStep(2)">Continue to Delivery Details <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- STEP 2: CUSTOMER & DELIVERY DETAILS -->
+                <div id="checkoutStep2" style="display: none;">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-gold);">Step 2: Customer & Delivery Address</h4>
+                    <form id="checkoutCustomerForm" onsubmit="event.preventDefault(); goToCheckoutStep(3);">
+                        <div class="form-grid">
+                            <div class="form-group full">
+                                <label>Full Name *</label>
+                                <input type="text" id="custFullName" class="form-control" required placeholder="e.g. John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone / WhatsApp *</label>
+                                <input type="tel" id="custPhone" class="form-control" required placeholder="+44 7123 456789">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address *</label>
+                                <input type="email" id="custEmail" class="form-control" required placeholder="name@example.com">
+                            </div>
+                            <div class="form-group full">
+                                <label>Street Address *</label>
+                                <input type="text" id="custStreet" class="form-control" required placeholder="House number and street name">
+                            </div>
+                            <div class="form-group">
+                                <label>City *</label>
+                                <input type="text" id="custCity" class="form-control" required placeholder="City / Town">
+                            </div>
+                            <div class="form-group">
+                                <label>Postcode *</label>
+                                <input type="text" id="custPostcode" class="form-control" required placeholder="e.g. EC1V 2NX">
+                            </div>
+                            <div class="form-group full">
+                                <label>Country *</label>
+                                <input type="text" id="custCountry" class="form-control" required value="United Kingdom">
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                            <button type="button" class="btn-outline" onclick="goToCheckoutStep(1)" style="flex: 1;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                            <button type="submit" class="btn-gold" style="flex: 2;">Continue to Payment <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- STEP 3: PAYMENT METHOD SELECTION -->
+                <div id="checkoutStep3" style="display: none;">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-gold);">Step 3: Select Payment Method</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Amount Due Now: <strong id="checkoutDueAmount" style="color: var(--accent-gold); font-size: 1.1rem;">£0</strong></p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <button class="btn-outline" id="btnPayBank" onclick="selectPaymentMethod('bank')" style="padding: 1rem; flex-direction: column; text-align: center;">
+                            <i class="fa-solid fa-building-columns" style="font-size: 1.5rem; margin-bottom: 0.4rem; color: var(--accent-gold);"></i>
+                            <span>Bank Transfer</span>
+                        </button>
+                        <button class="btn-outline" id="btnPayCrypto" onclick="selectPaymentMethod('crypto')" style="padding: 1rem; flex-direction: column; text-align: center;">
+                            <i class="fa-brands fa-bitcoin" style="font-size: 1.5rem; margin-bottom: 0.4rem; color: var(--warning);"></i>
+                            <span>Crypto (Bitcoin)</span>
+                        </button>
+                    </div>
+
+                    <!-- Bank Details Panel -->
+                    <div id="methodBankPanel" style="display: none; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); padding: 1.25rem; border-radius: var(--radius); margin-bottom: 1.5rem;">
+                        <p style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.5;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--accent-gold);"></i> Please contact Admin to receive our official bank transfer details for this transaction.
+                        </p>
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <a href="https://wa.me/447541995210" target="_blank" class="btn-gold btn-sm"><i class="fa-brands fa-whatsapp"></i> Contact Admin on WhatsApp</a>
+                            <a href="mailto:contact@autonestdrive.online" class="btn-outline btn-sm"><i class="fa-solid fa-envelope"></i> Email Admin</a>
+                        </div>
+                    </div>
+
+                    <!-- Crypto Details Panel -->
+                    <div id="methodCryptoPanel" style="display: none; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); padding: 1.25rem; border-radius: var(--radius); margin-bottom: 1.5rem;">
+                        <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Send Bitcoin (BTC) to address:</label>
+                        <div style="display: flex; gap: 0.5rem; align-items: center; background: #000; padding: 0.6rem; border-radius: 6px; border: 1px solid var(--border-subtle);">
+                            <code id="btcAddressText" style="font-size: 0.85rem; color: var(--accent-gold); word-break: break-all; flex: 1;">bc1q42m654qzhmmkela2gpacfqwy062gc0hk4tk7rk</code>
+                            <button class="btn-gold btn-sm" onclick="copyBtcAddress()"><i class="fa-solid fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: FINAL PAYMENT CONFIRMATION / RECEIPT NOTICE -->
+                    <div id="checkoutStep4Banner" style="display: none; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--success); padding: 1.25rem; border-radius: var(--radius); margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--success); font-size: 0.95rem; margin-bottom: 0.4rem;"><i class="fa-solid fa-circle-check"></i> Next Step To Confirm Order</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-main); line-height: 1.5;">
+                            Once your payment or deposit is sent, please send your payment receipt/screenshot to Admin via WhatsApp (<strong>+44 7541 995210</strong>) or Email (<strong>contact@autonestdrive.online</strong>) to confirm your order and schedule delivery.
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn-outline" onclick="goToCheckoutStep(2)" style="flex: 1;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                        <button class="btn-gold" onclick="finishCheckout()" style="flex: 2;"><i class="fa-solid fa-check"></i> Complete & Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-container" style="max-width: 450px;">
+            <div class="modal-header">
+                <h3>Account Access</h3>
+                <button class="modal-close" onclick="closeModal('authModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="event.preventDefault(); alert('Signed in successfully.'); closeModal('authModal');">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" required placeholder="contact@autonestdrive.online">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" required placeholder="••••••••">
+                    </div>
+                    <button class="btn-gold" style="width: 100%; margin-top: 1rem;">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- WISHLIST MODAL -->
+    <div class="modal-overlay" id="wishlistModal">
+        <div class="modal-container" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>Saved Vehicles</h3>
+                <button class="modal-close" onclick="closeModal('wishlistModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="wishlistContent">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD MODAL -->
+    <div class="modal-overlay" id="dashboardModal">
+        <div class="modal-container" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>Customer Dashboard</h3>
+                <button class="modal-close" onclick="closeModal('dashboardModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Welcome to your AutoNestDrive portal. Here you can track active vehicle reservations and direct delivery updates.</p>
+                <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border-subtle);">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Active Orders & Support</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Have a question about your order status or scheduled delivery?</p>
+                    <a href="https://wa.me/447541995210" target="_blank" class="btn-gold btn-sm" style="margin-top: 0.75rem;"><i class="fa-brands fa-whatsapp"></i> Chat Direct with Admin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="brand" style="margin-bottom: 1rem;">
+                    <i class="fa-solid fa-car-side" style="color: var(--accent-gold);"></i> AutoNest<span>Drive</span>
+                </div>
+                <p style="font-size: 0.85rem; line-height: 1.6;">UK's leading luxury car dealership offering handpicked performance cars, nationwide door-to-door delivery, and flexible financing.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#" onclick="switchMainView('home')">Vehicle Inventory</a></li>
+                    <li><a href="#" onclick="switchMainView('financePage')">Finance Options</a></li>
+                    <li><a href="#" onclick="switchMainView('aboutPage')">About AutoNestDrive</a></li>
+                    <li><a href="#" onclick="switchMainView('faqPage')">Help & FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Details</h4>
+                <ul>
+                    <li><i class="fa-solid fa-phone" style="color: var(--accent-gold);"></i> <a href="https://wa.me/447541995210" target="_blank">+44 7541 995210</a></li>
+                    <li><i class="fa-solid fa-envelope" style="color: var(--accent-gold);"></i> <a href="mailto:contact@autonestdrive.online">contact@autonestdrive.online</a></li>
+                    <li><i class="fa-solid fa-location-dot" style="color: var(--accent-gold);"></i> 128 City Road, London, EC1V 2NX</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Working Hours</h4>
+                <p style="font-size: 0.85rem;">Monday - Saturday: 8:30 AM - 7:00 PM<br>Sunday: By Appointment Only</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AutoNestDrive. All rights reserved.</p>
+            <p>128 City Road, London, EC1V 2NX | Tel: +44 7541 995210</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // CAR INVENTORY DATA
+        const inventoryData = [
+            {
+                id: "car-001",
+                make: "Porsche",
+                model: "911 Carrera S",
+                year: 2023,
+                price: 114950,
+                financeMonthly: 1250,
+                mileage: 4200,
+                fuel: "Petrol",
+                transmission: "Automatic",
+                bodyStyle: "Coupe",
+                engine: "3.0L Twin-Turbo",
+                colour: "GT Silver",
+                badge: "Featured",
+                images: [
+                    "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: "car-002",
+                make: "Audi",
+                model: "RS6 Avant",
+                year: 2022,
+                price: 89950,
+                financeMonthly: 980,
+                mileage: 12500,
+                fuel: "Petrol",
+                transmission: "Automatic",
+                bodyStyle: "Estate",
+                engine: "4.0L V8 TFSI",
+                colour: "Nardo Grey",
+                badge: "Popular",
+                images: [
+                    "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1610768764270-790fbec18178?auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: "car-003",
+                make: "BMW",
+                model: "M3 Competition",
+                year: 2023,
+                price: 76950,
+                financeMonthly: 840,
+                mileage: 8100,
+                fuel: "Petrol",
+                transmission: "Automatic",
+                bodyStyle: "Saloon",
+                engine: "3.0L BiTurbo",
+                colour: "Isle of Man Green",
+                badge: "Just Arrived",
+                images: [
+                    "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: "car-004",
+                make: "Mercedes-Benz",
+                model: "G63 AMG",
+                year: 2021,
+                price: 139950,
+                financeMonthly: 1520,
+                mileage: 18900,
+                fuel: "Petrol",
+                transmission: "Automatic",
+                bodyStyle: "SUV",
+                engine: "4.0L V8 Biturbo",
+                colour: "Obsidian Black",
+                badge: "Prestige",
+                images: [
+                    "https://images.unsplash.com/photo-1520031441872-265e4ff70d26?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: "car-005",
+                make: "Land Rover",
+                model: "Range Rover Sport SVR",
+                year: 2022,
+                price: 82500,
+                financeMonthly: 890,
+                mileage: 16400,
+                fuel: "Petrol",
+                transmission: "Automatic",
+                bodyStyle: "SUV",
+                engine: "5.0L Supercharged V8",
+                colour: "Estoril Blue",
+                badge: "V8 Supercharged",
+                images: [
+                    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: "car-006",
+                make: "Bentley",
+                model: "Continental GT",
+                year: 2020,
+                price: 128900,
+                financeMonthly: 1410,
+                mileage: 14200,
+                fuel: "Petrol",
+                transmission: "Automatic",
+                bodyStyle: "Coupe",
+                engine: "6.0L W12 Twin-Turbo",
+                colour: "Beluga Black",
+                badge: "Luxury",
+                images: [
+                    "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80"
+                ]
+            }
+        ];
+
+        let wishlist = [];
+        let activeCheckoutCar = null;
+        let selectedPaymentTypeVal = "full";
+
+        // INITIALIZE APP
+        document.addEventListener("DOMContentLoaded", () => {
+            populateFilterOptions();
+            renderCarsGrid(inventoryData);
+            updateWishlistBadge();
+            runGlobalFinanceCalc();
+        });
+
+        // VIEW SWITCHER
+        function switchMainView(viewName) {
+            document.querySelectorAll('.main-view-section').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+            if (viewName === 'home') {
+                document.getElementById('viewHome').style.display = 'block';
+                document.getElementById('navHome').classList.add('active');
+            } else if (viewName === 'financePage') {
+                document.getElementById('viewFinancePage').style.display = 'block';
+            } else if (viewName === 'aboutPage') {
+                document.getElementById('viewAboutPage').style.display = 'block';
+            } else if (viewName === 'contactPage') {
+                document.getElementById('viewContactPage').style.display = 'block';
+            } else if (viewName === 'faqPage') {
+                document.getElementById('viewFaqPage').style.display = 'block';
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // RENDER INVENTORY CARDS
+        function renderCarsGrid(list) {
+            const container = document.getElementById("carsGridContainer");
+            const countDisplay = document.getElementById("inventoryCountDisplay");
+            const totalDisplay = document.getElementById("totalInventoryCount");
+
+            countDisplay.textContent = `Showing ${list.length} available vehicles`;
+            totalDisplay.textContent = inventoryData.length;
+
+            if (list.length === 0) {
+                container.innerHTML = `<div style="grid-column: 1/-1; padding: 3rem; text-align: center; color: var(--text-muted); border: 1px dashed var(--border-subtle); border-radius: var(--radius);">No vehicles match your selected filter criteria.</div>`;
+                return;
+            }
+
+            container.innerHTML = list.map(car => {
+                const isSaved = wishlist.includes(car.id);
+                return `
+                    <div class="car-card">
+                        <div class="car-img-wrap">
+                            <div class="car-badges">
+                                <span class="badge">${car.badge}</span>
+                            </div>
+                            <button class="fav-btn ${isSaved ? 'active' : ''}" onclick="toggleWishlist('${car.id}')" title="Save Car">
+                                <i class="fa-${isSaved ? 'solid' : 'regular'} fa-heart"></i>
+                            </button>
+                            <img src="${car.images[0]}" alt="${car.make} ${car.model}" class="car-img" onclick="openVehicleDetails('${car.id}')" style="cursor: pointer;">
+                        </div>
+                        <div class="car-body">
+                            <h3 class="car-title" onclick="openVehicleDetails('${car.id}')" style="cursor: pointer;">${car.make} ${car.model}</h3>
+                            <div class="car-trim">${car.year} &bull; ${car.engine}</div>
+
+                            <div class="car-specs-grid">
+                                <div><span>Mileage</span><strong>${car.mileage.toLocaleString()} mi</strong></div>
+                                <div><span>Fuel</span><strong>${car.fuel}</strong></div>
+                                <div><span>Gearbox</span><strong>${car.transmission}</strong></div>
+                            </div>
+
+                            <div class="car-finance-box">
+                                <span>PCP Finance from</span>
+                                <strong>£${car.financeMonthly}/mo</strong>
+                            </div>
+
+                            <div class="car-price-row">
+                                <span class="car-price">£${car.price.toLocaleString()}</span>
+                            </div>
+
+                            <div class="car-footer-actions">
+                                <button class="btn-outline btn-sm" onclick="openVehicleDetails('${car.id}')"><i class="fa-solid fa-circle-info"></i> Details</button>
+                                <button class="btn-gold btn-sm" onclick="openCheckoutModal('${car.id}')"><i class="fa-solid fa-bag-shopping"></i> Purchase / Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // POPULATE SEARCH FILTERS
+        function populateFilterOptions() {
+            const makes = [...new Set(inventoryData.map(c => c.make))];
+            const models = [...new Set(inventoryData.map(c => c.model))];
+            const bodies = [...new Set(inventoryData.map(c => c.bodyStyle))];
+            const fuels = [...new Set(inventoryData.map(c => c.fuel))];
+            const transmissions = [...new Set(inventoryData.map(c => c.transmission))];
+
+            const makeSelect = document.getElementById('searchMake');
+            makes.forEach(m => makeSelect.add(new Option(m, m)));
+
+            const modelSelect = document.getElementById('searchModel');
+            models.forEach(m => modelSelect.add(new Option(m, m)));
+
+            const bodySelect = document.getElementById('searchBody');
+            bodies.forEach(b => bodySelect.add(new Option(b, b)));
+
+            // Fuel checkboxes
+            document.getElementById('filterFuelOptions').innerHTML = fuels.map(f => `
+                <label style="display:flex; gap:0.5rem; align-items:center;">
+                    <input type="checkbox" value="${f}" class="fuel-filter-cb" onchange="applyFilters()"> ${f}
+                </label>
+            `).join('');
+
+            // Transmission checkboxes
+            document.getElementById('filterTransOptions').innerHTML = transmissions.map(t => `
+                <label style="display:flex; gap:0.5rem; align-items:center;">
+                    <input type="checkbox" value="${t}" class="trans-filter-cb" onchange="applyFilters()"> ${t}
+                </label>
+            `).join('');
+        }
+
+        // APPLY FILTERS
+        function applyFilters() {
+            const make = document.getElementById('searchMake').value;
+            const model = document.getElementById('searchModel').value;
+            const body = document.getElementById('searchBody').value;
+            const maxPrice = parseFloat(document.getElementById('searchPrice').value) || Infinity;
+            const maxMileage = parseFloat(document.getElementById('filterMaxMileage').value) || Infinity;
+            const sortBy = document.getElementById('sortInventory').value;
+
+            const selectedFuels = Array.from(document.querySelectorAll('.fuel-filter-cb:checked')).map(cb => cb.value);
+            const selectedTrans = Array.from(document.querySelectorAll('.trans-filter-cb:checked')).map(cb => cb.value);
+
+            let filtered = inventoryData.filter(car => {
+                if (make && car.make !== make) return false;
+                if (model && car.model !== model) return false;
+                if (body && car.bodyStyle !== body) return false;
+                if (car.price > maxPrice) return false;
+                if (car.mileage > maxMileage) return false;
+                if (selectedFuels.length && !selectedFuels.includes(car.fuel)) return false;
+                if (selectedTrans.length && !selectedTrans.includes(car.transmission)) return false;
+                return true;
+            });
+
+            // Sorting
+            if (sortBy === 'price-low') filtered.sort((a,b) => a.price - b.price);
+            else if (sortBy === 'price-high') filtered.sort((a,b) => b.price - a.price);
+            else if (sortBy === 'mileage') filtered.sort((a,b) => a.mileage - b.mileage);
+
+            renderCarsGrid(filtered);
+        }
+
+        function executeAdvancedSearch() {
+            switchMainView('home');
+            applyFilters();
+            document.getElementById('inventory').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetFilters() {
+            document.getElementById('searchMake').value = "";
+            document.getElementById('searchModel').value = "";
+            document.getElementById('searchBody').value = "";
+            document.getElementById('searchPrice').value = "";
+            document.getElementById('filterMaxMileage').value = "";
+            document.querySelectorAll('.fuel-filter-cb, .trans-filter-cb').forEach(cb => cb.checked = false);
+            applyFilters();
+        }
+
+        // DETAILS MODAL
+        function openVehicleDetails(carId) {
+            const car = inventoryData.find(c => c.id === carId);
+            if (!car) return;
+
+            document.getElementById('modalCarTitle').textContent = `${car.year} ${car.make} ${car.model}`;
+            document.getElementById('modalCarContent').innerHTML = `
+                <div class="details-grid">
+                    <div class="details-gallery">
+                        <img src="${car.images[0]}" class="details-main-img" id="mainModalImg" alt="${car.make}">
+                        <div class="details-thumbs">
+                            ${car.images.map((img, i) => `
+                                <img src="${img}" class="details-thumb ${i===0?'active':''}" onclick="document.getElementById('mainModalImg').src='${img}'">
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div>
+                        <h2 style="font-size: 1.5rem; margin-bottom: 0.2rem;">${car.make} ${car.model}</h2>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">${car.engine} &bull; ${car.colour}</p>
+                        
+                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 1rem;">£${car.price.toLocaleString()}</div>
+
+                        <table class="spec-table">
+                            <tr><td>Registration Year</td><td>${car.year}</td></tr>
+                            <tr><td>Mileage</td><td>${car.mileage.toLocaleString()} miles</td></tr>
+                            <tr><td>Transmission</td><td>${car.transmission}</td></tr>
+                            <tr><td>Fuel Type</td><td>${car.fuel}</td></tr>
+                            <tr><td>Body Style</td><td>${car.bodyStyle}</td></tr>
+                            <tr><td>Exterior Colour</td><td>${car.colour}</td></tr>
+                        </table>
+
+                        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+                            <button class="btn-gold" style="flex: 1;" onclick="closeModal('vehicleModal'); openCheckoutModal('${car.id}');">
+                                <i class="fa-solid fa-bag-shopping"></i> Purchase / Reserve Now
+                            </button>
+                            <a href="https://wa.me/447541995210" target="_blank" class="btn-outline">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            openModal('vehicleModal');
+        }
+
+        // ==========================================
+        // MULTI-STEP CHECKOUT WORKFLOW LOGIC
+        // ==========================================
+        function openCheckoutModal(carId) {
+            const car = inventoryData.find(c => c.id === carId);
+            if (!car) return;
+
+            activeCheckoutCar = car;
+            selectedPaymentTypeVal = "full";
+
+            document.getElementById('checkoutCarName').textContent = `${car.year} ${car.make} ${car.model}`;
+            document.getElementById('checkoutCarTrim').textContent = `${car.engine} - ${car.colour}`;
+            document.getElementById('checkoutCarPrice').textContent = `£${car.price.toLocaleString()}`;
+
+            const halfVal = Math.round(car.price * 0.5);
+            document.getElementById('checkoutFullAmount').textContent = `£${car.price.toLocaleString()}`;
+            document.getElementById('checkoutHalfAmount').textContent = `£${halfVal.toLocaleString()}`;
+
+            // Reset choices
+            document.getElementById('optFull').checked = true;
+            selectPaymentType('full');
+
+            // Reset Step visibility
+            goToCheckoutStep(1);
+
+            openModal('checkoutModal');
+        }
+
+        function selectPaymentType(type) {
+            selectedPaymentTypeVal = type;
+            const fullWrap = document.getElementById('optFullWrap');
+            const halfWrap = document.getElementById('optHalfWrap');
+
+            if (type === 'full') {
+                document.getElementById('optFull').checked = true;
+                fullWrap.classList.add('selected');
+                halfWrap.classList.remove('selected');
+            } else {
+                document.getElementById('optHalf').checked = true;
+                halfWrap.classList.add('selected');
+                fullWrap.classList.remove('selected');
+            }
+        }
+
+        function goToCheckoutStep(step) {
+            document.getElementById('checkoutStep1').style.display = (step === 1) ? 'block' : 'none';
+            document.getElementById('checkoutStep2').style.display = (step === 2) ? 'block' : 'none';
+            document.getElementById('checkoutStep3').style.display = (step === 3) ? 'block' : 'none';
+
+            if (step === 3) {
+                // Calculate amount due
+                const dueAmount = (selectedPaymentTypeVal === 'full') ? activeCheckoutCar.price : Math.round(activeCheckoutCar.price * 0.5);
+                document.getElementById('checkoutDueAmount').textContent = `£${dueAmount.toLocaleString()} (${selectedPaymentTypeVal === 'full' ? '100% Full Payment' : '50% Deposit'})`;
+                
+                // Hide sub-panels until chosen
+                document.getElementById('methodBankPanel').style.display = 'none';
+                document.getElementById('methodCryptoPanel').style.display = 'none';
+                document.getElementById('checkoutStep4Banner').style.display = 'none';
+                
+                document.getElementById('btnPayBank').classList.remove('btn-gold');
+                document.getElementById('btnPayCrypto').classList.remove('btn-gold');
+            }
+        }
+
+        function selectPaymentMethod(method) {
+            const bankPanel = document.getElementById('methodBankPanel');
+            const cryptoPanel = document.getElementById('methodCryptoPanel');
+            const confirmBanner = document.getElementById('checkoutStep4Banner');
+            const btnBank = document.getElementById('btnPayBank');
+            const btnCrypto = document.getElementById('btnPayCrypto');
+
+            if (method === 'bank') {
+                bankPanel.style.display = 'block';
+                cryptoPanel.style.display = 'none';
+                btnBank.style.borderColor = 'var(--accent-gold)';
+                btnCrypto.style.borderColor = 'var(--border-subtle)';
+            } else if (method === 'crypto') {
+                cryptoPanel.style.display = 'block';
+                bankPanel.style.display = 'none';
+                btnCrypto.style.borderColor = 'var(--accent-gold)';
+                btnBank.style.borderColor = 'var(--border-subtle)';
+            }
+
+            // Always display step 4 confirmation notice after a method is picked
+            confirmBanner.style.display = 'block';
+        }
+
+        function copyBtcAddress() {
+            const text = document.getElementById('btcAddressText').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Bitcoin Address Copied: " + text);
+            });
+        }
+
+        function finishCheckout() {
+            closeModal('checkoutModal');
+            alert("Thank you! Your order application has been recorded. Please contact Admin via WhatsApp (+44 7541 995210) with your payment receipt to complete delivery scheduling.");
+        }
+
+        // WISHLIST LOGIC
+        function toggleWishlist(carId) {
+            if (wishlist.includes(carId)) {
+                wishlist = wishlist.filter(id => id !== carId);
+            } else {
+                wishlist.push(carId);
+            }
+            updateWishlistBadge();
+            applyFilters();
+        }
+
+        function updateWishlistBadge() {
+            document.getElementById('wishlistCount').textContent = wishlist.length;
+        }
+
+        function openWishlistModal() {
+            const container = document.getElementById('wishlistContent');
+            if (wishlist.length === 0) {
+                container.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 2rem;">No saved vehicles in your wishlist yet.</p>`;
+            } else {
+                const savedCars = inventoryData.filter(c => wishlist.includes(c.id));
+                container.innerHTML = savedCars.map(car => `
+                    <div style="display: flex; gap: 1rem; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-subtle);">
+                        <img src="${car.images[0]}" style="width: 80px; height: 55px; object-fit: cover; border-radius: 6px;">
+                        <div style="flex: 1;">
+                            <h4 style="font-size: 0.95rem;">${car.make} ${car.model}</h4>
+                            <span style="color: var(--accent-gold); font-weight: 700;">£${car.price.toLocaleString()}</span>
+                        </div>
+                        <button class="btn-gold btn-sm" onclick="closeModal('wishlistModal'); openCheckoutModal('${car.id}');">Purchase</button>
+                    </div>
+                `).join('');
+            }
+            openModal('wishlistModal');
+        }
+
+        // FINANCE CALCULATOR ENGINE
+        function runGlobalFinanceCalc() {
+            const price = parseFloat(document.getElementById('calcPrice').value) || 0;
+            const deposit = parseFloat(document.getElementById('calcDeposit').value) || 0;
+            const term = parseInt(document.getElementById('calcTerm').value) || 48;
+            const type = document.getElementById('calcType').value;
+
+            const loanAmount = Math.max(0, price - deposit);
+            const annualRate = 0.089; // 8.9% APR
+            const monthlyRate = annualRate / 12;
+
+            let monthlyPayment = 0;
+            if (type === 'HP') {
+                monthlyPayment = (loanAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -term));
+            } else { // PCP lower monthly with balloon assumption
+                const balloon = price * 0.35;
+                monthlyPayment = ((loanAmount - balloon) * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -term)) + (balloon * monthlyRate);
+            }
+
+            const totalPayable = (monthlyPayment * term) + deposit;
+
+            document.getElementById('resMonthly').textContent = `£${isNaN(monthlyPayment) ? '0.00' : monthlyPayment.toFixed(2)}`;
+            document.getElementById('resTotal').textContent = `£${isNaN(totalPayable) ? '0.00' : totalPayable.toFixed(2)}`;
+        }
+
+        // MODAL HELPERS
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function openAuthModal() { openModal('authModal'); }
+        function openDashboardModal() { openModal('dashboardModal'); }
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
